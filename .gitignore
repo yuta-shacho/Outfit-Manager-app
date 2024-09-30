@@ -1,0 +1,4 @@
+node_modules/
+src/firebase.ts
+public/vite.svg
+src/vite-env.d.ts
