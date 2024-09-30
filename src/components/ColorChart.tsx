@@ -12,21 +12,17 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { ExpenseType, Transaction, TransactionColor } from "../types";
+import { ExpenseType, TransactionColor } from "../types";
+import { useAppContext } from "../context/AppContext";
+import useMonthlyTransactions from "../hooks/useMonthlyTransactions";
+import useYearTransactions from "../hooks/useYearTransactions";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-interface ColorChartProps {
-  monthlyTransactions: Transaction[];
-  yearTransactions: Transaction[];
-  isLoading: boolean;
-}
-
-const ColorChart = ({
-  monthlyTransactions,
-  yearTransactions,
-  isLoading,
-}: ColorChartProps) => {
+const ColorChart = () => {
+  const { isLoading } = useAppContext();
+  const monthlyTransactions = useMonthlyTransactions();
+  const yearTransactions = useYearTransactions();
   const theme = useTheme();
   const [selectedType, setSelectedType] = useState<ExpenseType>("monthExpense");
 

@@ -12,21 +12,19 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { ExpenseType, Transaction,  TransactionGenre } from "../types";
+import { ExpenseType,  TransactionGenre } from "../types";
+import { useAppContext } from "../context/AppContext";
+import useMonthlyTransactions from "../hooks/useMonthlyTransactions";
+import useYearTransactions from "../hooks/useYearTransactions";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-interface GenreChartProps {
-  monthlyTransactions: Transaction[];
-  yearTransactions: Transaction[];
-  isLoading: boolean;
-}
 
-const GenreChart = ({
-  monthlyTransactions,
-  yearTransactions,
-  isLoading,
-}: GenreChartProps) => {
+
+const GenreChart = () => {
+  const {isLoading} = useAppContext()
+  const monthlyTransactions = useMonthlyTransactions();
+    const yearTransactions = useYearTransactions();
   const theme = useTheme()
   const [selectedType, setSelectedType] = useState<ExpenseType>("monthExpense");
 

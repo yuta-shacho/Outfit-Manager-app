@@ -12,21 +12,19 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { ExpenseType, Transaction, TransactionCategory } from "../types";
+import { ExpenseType,TransactionCategory } from "../types";
+import { useAppContext } from "../context/AppContext";
+import useMonthlyTransactions from "../hooks/useMonthlyTransactions";
+import useYearTransactions from "../hooks/useYearTransactions";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-interface CategoryChartProps {
-  monthlyTransactions: Transaction[];
-  yearTransactions: Transaction[];
-  isLoading: boolean;
-}
 
-const CategoryChart = ({
-  monthlyTransactions,
-  yearTransactions,
-  isLoading,
-}: CategoryChartProps) => {
+
+const CategoryChart = () => {
+  const {isLoading} = useAppContext()
+  const monthlyTransactions = useMonthlyTransactions();
+    const yearTransactions = useYearTransactions();
   const theme = useTheme()
   const [selectedType, setSelectedType] = useState<ExpenseType>("monthExpense");
 

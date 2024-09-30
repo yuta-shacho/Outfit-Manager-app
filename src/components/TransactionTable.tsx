@@ -18,7 +18,6 @@ import Tooltip from "@mui/material/Tooltip";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 
-import { Transaction } from "../types";
 import {
   totalMonthExpense,
   totalYearExpense,
@@ -27,6 +26,9 @@ import { Grid2 } from "@mui/material";
 import { formatCurrency } from "../utils/formatting";
 import IconComponents from "./common/IconComponents";
 import { compareDesc, parseISO } from "date-fns";
+import { useAppContext } from "../context/AppContext";
+import useMonthlyTransactions from "../hooks/useMonthlyTransactions";
+import useYearTransactions from "../hooks/useYearTransactions";
 
 interface TransactionTableHeadProps {
   numSelected: number;
@@ -121,20 +123,11 @@ function TransactionTableToolbar(props: TransactionTableToolbarProps) {
   );
 }
 
-interface TransactionTableProps {
-  monthlyTransactions: Transaction[];
-  yearTransactions: Transaction[];
-  onDeleteTransaction: (
-    transactionIds: string | readonly string[]
-  ) => Promise<void>;
-}
-
 //ここから本体
-export default function TransactionTable({
-  monthlyTransactions,
-  yearTransactions,
-  onDeleteTransaction,
-}: TransactionTableProps) {
+export default function TransactionTable() {
+  const { onDeleteTransaction } = useAppContext();
+  const monthlyTransactions = useMonthlyTransactions();
+  const yearTransactions = useYearTransactions();
   const theme = useTheme();
 
   const [selected, setSelected] = React.useState<readonly string[]>([]);

@@ -5,27 +5,27 @@ import jaLocale from "@fullcalendar/core/locales/ja";
 import "../calendar.css";
 import { DatesSetArg, EventContentArg } from "@fullcalendar/core/index.js";
 import { calculateDailyExpense } from "../utils/financeCalculations";
-import { CalendarContent, Transaction } from "../types";
+import { CalendarContent } from "../types";
 import { formatCurrency } from "../utils/formatting";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 import { isSameMonth } from "date-fns";
+import useMonthlyTransactions from "../hooks/useMonthlyTransactions";
+import { useAppContext } from "../context/AppContext";
 
 interface CalendarProps {
-  monthlyTransactions: Transaction[];
-  setCurrentMonth: React.Dispatch<React.SetStateAction<Date>>;
   setCurrentDay: React.Dispatch<React.SetStateAction<string>>;
   currentDay: string;
   today: string;
   handleDateClick: (dateInfo: DateClickArg) => void;
 }
 const Calendar = ({
-  monthlyTransactions,
-  setCurrentMonth,
   setCurrentDay,
   currentDay,
   today,
   handleDateClick,
 }: CalendarProps) => {
+  const monthlyTransactions = useMonthlyTransactions();
+  const { setCurrentMonth } = useAppContext();
   const dailyExpense = calculateDailyExpense(monthlyTransactions);
 
   //データをイベント用に生成しなおす関数

@@ -14,7 +14,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close"; // 閉じるボタン用のアイコン
 import { FaTshirt } from "react-icons/fa";
 import { GiMonclerJacket } from "react-icons/gi";
@@ -51,26 +51,19 @@ import {
   TransactionGenre,
 } from "../types";
 import { Schema, transactionSchema } from "../validations/schema";
-import { AppContext } from "../context/AppContext";
+import { useAppContext } from "../context/AppContext";
 
 interface TransactionFormProps {
   onCloseForm: () => void;
   isEntryDrawerOpen: boolean;
   currentDay: string;
-  onSaveTransaction: (transaction: Schema) => Promise<void>;
-  setCurrentDay: React.Dispatch<React.SetStateAction<string>>;
+
   selectedTransaction: Transaction | null;
-  onDeleteTransaction: (
-    transactionIds: string | readonly string[]
-  ) => Promise<void>;
+
   setSelectedTransaction: React.Dispatch<
     React.SetStateAction<Transaction | null>
   >;
-  handleUpdateTransaction: (
-    transaction: Schema,
-    transactionId: string
-  ) => Promise<void>;
-  isMobile: boolean;
+
   isDialogOpen: boolean;
   setIsDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -94,18 +87,20 @@ const TransactionForm = ({
   onCloseForm,
   isEntryDrawerOpen,
   currentDay,
-  onSaveTransaction,
-  onDeleteTransaction,
+
   setSelectedTransaction,
-  handleUpdateTransaction,
-  setCurrentDay,
+
   selectedTransaction,
-  isMobile,
+
   isDialogOpen,
   setIsDialogOpen,
 }: TransactionFormProps) => {
-  const context = useContext(AppContext);
-  console.log(context);
+  const {
+    isMobile,
+    onDeleteTransaction,
+    onSaveTransaction,
+    handleUpdateTransaction,
+  } = useAppContext();
 
   const formWidth = 320;
 

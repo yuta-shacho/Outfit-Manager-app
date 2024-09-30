@@ -2,22 +2,18 @@ import { Card, CardContent, Grid2, Stack, Typography } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import React from "react";
-import { theme } from "../theme/theme";
-import { Transaction } from "../types";
+
 import {
   totalMonthExpense,
   totalYearExpense,
 } from "../utils/financeCalculations";
 import { formatCurrency } from "../utils/formatting";
+import useMonthlyTransactions from "../hooks/useMonthlyTransactions";
+import useYearTransactions from "../hooks/useYearTransactions";
 
-interface MonthlySummaryProps {
-  monthlyTransactions: Transaction[];
-  yearTransactions: Transaction[];
-}
-const MonthlySummary = ({
-  monthlyTransactions,
-  yearTransactions,
-}: MonthlySummaryProps) => {
+const MonthlySummary = () => {
+  const monthlyTransactions = useMonthlyTransactions();
+  const yearTransactions = useYearTransactions();
   const monthExpense = totalMonthExpense(monthlyTransactions);
   const yearExpense = totalYearExpense(yearTransactions);
 
