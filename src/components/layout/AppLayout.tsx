@@ -102,7 +102,7 @@ export default function AppLayout() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            服ログ
+            服ログ!!
           </Typography>
           <Tooltip title="お問い合わせフォーム" sx={{ marginLeft: "auto" }}>
             <IconButton

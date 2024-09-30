@@ -2,3 +2,5 @@ node_modules/
 src/firebase.ts
 public/vite.svg
 src/vite-env.d.ts
+public/rogo.png
+public/rogo.webp
