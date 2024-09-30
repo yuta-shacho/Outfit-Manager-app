@@ -15,6 +15,8 @@ import { db } from "../../firebase";
 import { useAppContext } from "../../context/AppContext";
 import { Transaction } from "../../types";
 import { isFireStoreError } from "../../utils/isFireStoreError";
+import { Tooltip } from "@mui/material";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 const drawerWidth = 240;
 
@@ -102,6 +104,16 @@ export default function AppLayout() {
           <Typography variant="h6" noWrap component="div">
             服ログ
           </Typography>
+          <Tooltip title="お問い合わせフォーム" sx={{ marginLeft: "auto" }}>
+            <IconButton
+              component="a"
+              href="https://forms.gle/YuuCsBWyemEZKiRt5"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <HelpOutlineIcon />
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       </AppBar>
 
