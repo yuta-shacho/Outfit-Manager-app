@@ -89,7 +89,6 @@ const Home = () => {
           currentDay={currentDay}
           onAddTransactionForm={onAddTransactionForm}
           onSelectTransaction={handleSelectTransaction}
-          // isMobile={isMobile}
           open={isMobileDrawerOpen}
           onClose={handleCloseMobileDrawer}
         />
