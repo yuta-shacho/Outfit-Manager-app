@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import {
@@ -16,6 +16,7 @@ import { ExpenseType,  TransactionGenre } from "../types";
 import { useAppContext } from "../context/AppContext";
 import useMonthlyTransactions from "../hooks/useMonthlyTransactions";
 import useYearTransactions from "../hooks/useYearTransactions";
+import { useState } from "react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 

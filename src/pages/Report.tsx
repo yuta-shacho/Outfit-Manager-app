@@ -1,6 +1,5 @@
 import { Grid2, Paper } from "@mui/material";
 
-import React from "react";
 import MonthSelector from "../components/MonthSelector";
 import CategoryChart from "../components/CategoryChart";
 import GenreChart from "../components/GenreChart";

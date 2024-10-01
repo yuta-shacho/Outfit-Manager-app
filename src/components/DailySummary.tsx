@@ -1,11 +1,7 @@
 import { Box, Card, CardContent, Grid2, Typography } from "@mui/material";
-import { theme } from "../theme/theme";
-import React from "react";
+
 import { Transaction } from "../types";
-import {
-  calculateDailyExpense,
-  totalMonthExpense,
-} from "../utils/financeCalculations";
+import { totalMonthExpense } from "../utils/financeCalculations";
 import { formatCurrency } from "../utils/formatting";
 
 interface DailySummaryProps {

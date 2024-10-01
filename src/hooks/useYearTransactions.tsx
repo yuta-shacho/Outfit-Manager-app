@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { useAppContext } from "../context/AppContext";
 import { formatYear } from "../utils/formatting";
 import { Transaction } from "../types";

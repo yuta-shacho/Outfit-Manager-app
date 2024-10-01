@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
 import firebase from "firebase/compat/app"; // FirebaseUIのために互換バージョンを使用
 import "firebaseui/dist/firebaseui.css";
 import * as firebaseui from "firebaseui";
 import { auth } from "../firebase";
+import { useEffect } from "react";
 
 const FirebaseAuth = () => {
   useEffect(() => {

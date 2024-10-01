@@ -1,4 +1,3 @@
-import React from "react";
 import { TransactionColor } from "../../types";
 import {
   red,

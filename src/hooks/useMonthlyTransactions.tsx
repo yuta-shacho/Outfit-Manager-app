@@ -1,7 +1,7 @@
-import React, { useMemo } from "react";
 import { useAppContext } from "../context/AppContext";
 import { formatMonth } from "../utils/formatting";
 import { Transaction } from "../types";
+import { useMemo } from "react";
 
 const useMonthlyTransactions = (): Transaction[] => {
   const { transactions, currentMonth } = useAppContext();

@@ -157,9 +157,9 @@ const TransactionForm = ({
     resolver: zodResolver(transactionSchema),
   });
 
-  const [categories, setCategories] = useState(expenseCategories);
-  const [genres, setGenres] = useState(expenseGenres);
-  const [colors, setColors] = useState(expenseColors);
+  const [categories] = useState(expenseCategories);
+  const [genres] = useState(expenseGenres);
+  const [colors] = useState(expenseColors);
 
   useEffect(() => {
     setValue("date", currentDay);

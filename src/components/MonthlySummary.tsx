@@ -1,7 +1,6 @@
 import { Card, CardContent, Grid2, Stack, Typography } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
-import React from "react";
 
 import {
   totalMonthExpense,

@@ -1,4 +1,4 @@
-import React from "react";
+
 import { TransactionCategory, TransactionGenre } from "../../types";
 import { FaTshirt } from "react-icons/fa";
 import { GiMonclerJacket } from "react-icons/gi";
