@@ -4,3 +4,4 @@ public/vite.svg
 src/vite-env.d.ts
 public/rogo.png
 public/rogo.webp
+dist/
