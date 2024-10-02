@@ -1,50 +1,59 @@
-# React + TypeScript + Vite
+## サービス URL
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#### 【服ログ!!】
 
-Currently, two official plugins are available:
+https://outfitmanager-a9196.web.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## サービス概要
 
-## Expanding the ESLint configuration
+服の購入状況を視覚化し、効果的に管理する WEB アプリです。このアプリでは、あなたが購入した服の「色」や「カテゴリ」（トップス、ボトムス、アウターなど）ごとの購入数や支出額をグラフで一目で確認できます。たとえば、カラーバリエーション、アイテムカテゴリ別の円グラフを使って、どの色の服が多いのか、どのカテゴリにお金をかけているのかが直感的に把握できるようになっています。
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## このサービスへの思い・制作した理由
 
-- Configure the top-level `parserOptions` property like this:
+- 服が好きなため！
+- 私は普段、自分がどのアイテムに多くの出費をしているのか、どの色のアイテムを多く持っているのかを忘れてしまうことがありました。そのため、手持ちの服とのバランスを考えずに、似たようなアイテムを無意識に買ってしまうこともありました。そんな課題を解決するために、購入した服を「色」や「カテゴリ」ごとに整理し、視覚的に把握できるツールを作りたいという思いで、このアプリを開発しました。さらに、服の選び方や購入ペースを見直すきっかけにもなればと考えています。例えば、黒ばかり選んでいることに気づいて他の色にも挑戦したり、特定のカテゴリに偏りすぎていないかを見直すことで、よりバランスの取れたワードローブを作り上げる助けとなると期待しています。
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 機能(2024/10/1 時点)
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+**【メイン機能】**
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- 服購入の「保存」「削除」「変更」機能（バックエンドには FireStore を利用）
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+  - 日付、「カテゴリ」「ジャンル」「カラー」、金額、内容を保存
+  - バリテーションチェックによるエラー
+
+- カレンダー機能（FullCalendar を利用）
+
+  - カレンダーの日付に収支を表示
+  - 日付ごとの収支を表示
+
+- 金額集計機能
+
+  - 今年の服代を表示
+  - 選択した月の服代を表示
+  - 日付ごとの服代を表示
+
+- グラフ表示
+
+  - 「カテゴリ」「ジャンル」「カラー」ごとの合計購入数を表示した円グラフ
+  - 円グラフの選択している月と年に切り替え可能
+  - 選択している月の日別の服代の割合を表示した棒グラフ
+
+- レスポンシブ対応
+
+## 今後の実装方針予定
+
+- ユーザー認証機能（現在実装中）
+- 服の画像保存機能
+
+## 使用技術スタック
+
+- TypeScript+React（フロントエンド）
+- MUI（デザイン作成）
+- Firebase の Firestore（データベースとして利用）
+- vite（モジュールバンドラー）
+- FullCalendar（カレンダー作成）
+- ReactHookForm（フォーム作成）
+- Zod（フォームのバリデーションチェックに利用）
+- react-chartjs-2(グラフ作成)
+- DateFNS（日付操作ライブラリ）
