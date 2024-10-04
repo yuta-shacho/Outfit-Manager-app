@@ -49,3 +49,12 @@ export interface CalendarContent {
 }
 
 export type ExpenseType = "monthExpense" | "yearExpense";
+
+export interface InitialUserState {
+  user: null | {
+    uid: string;
+    photo: string;
+    email: string;
+    displayName: string;
+  };
+}
