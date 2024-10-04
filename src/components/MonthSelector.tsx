@@ -17,7 +17,7 @@ const MonthSelector = () => {
 
   const handlePreviousMonth = () => {
     const previousMonth = addMonths(currentMonth, -1);
-    console.log(previousMonth);
+
     setCurrentMonth(previousMonth);
   };
   const handleNextMonth = () => {
