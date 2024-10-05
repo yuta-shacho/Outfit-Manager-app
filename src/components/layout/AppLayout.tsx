@@ -17,17 +17,25 @@ import { Transaction } from "../../types";
 import { isFireStoreError } from "../../utils/isFireStoreError";
 import { Tooltip } from "@mui/material";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import { useAppSelector } from "../../app/hooks";
 
 const drawerWidth = 240;
 
 export default function AppLayout() {
   const { setTransactions, setIsLoading } = useAppContext();
 
+  const user = useAppSelector((state) => state.user);
+
+  if (user == null) {
+    throw new Error("AppLayoutのエラー");
+  }
+
   React.useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "Transactions"));
-        console.log(querySnapshot);
+        const querySnapshot = await getDocs(
+          collection(db, "users", user.uid, "Transactions")
+        );
 
         const transactionsDate = querySnapshot.docs.map((doc) => {
           // doc.data() is never undefined for query doc snapshots
@@ -89,11 +97,11 @@ export default function AppLayout() {
         sx={{
           width: { md: `calc(100% - ${drawerWidth}px)` },
           ml: { md: `${drawerWidth}px` },
+          bgcolor: "rgba(231, 227, 210, 255)",
         }}
       >
         <Toolbar>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
@@ -101,8 +109,23 @@ export default function AppLayout() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            服ログ!!
+          <img
+            src="../../public/rogo.webp"
+            alt=""
+            style={{ borderRadius: "50%", width: "50px" }}
+          />
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            color="#424242"
+            sx={{
+              paddingLeft: "5px",
+              fontFamily: "Nico Moji",
+              fontSize: "2rem",
+            }}
+          >
+            ふくログ!!
           </Typography>
           <Tooltip title="お問い合わせフォーム" sx={{ marginLeft: "auto" }}>
             <IconButton
