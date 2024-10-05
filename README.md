@@ -1,8 +1,8 @@
-## サービス URL
+# ふくログ
 
-#### 【服ログ!!】
+## サービス URL:https://outfitmanager-a9196.firebaseapp.com
 
-https://outfitmanager-a9196.web.app/
+![サービス画像](/public/service.png)
 
 ## サービス概要
 
@@ -41,9 +41,13 @@ https://outfitmanager-a9196.web.app/
 
 - レスポンシブ対応
 
+- ユーザー認証機能追加（2024/10/06）
+
+  - Google と GitHub にてログイン可能
+
 ## 今後の実装方針予定
 
-- ユーザー認証機能（現在実装中）
+- ユーザー認証機能（実装完了）
 - 服の画像保存機能
 
 ## 使用技術スタック
@@ -57,3 +61,4 @@ https://outfitmanager-a9196.web.app/
 - Zod（フォームのバリデーションチェックに利用）
 - react-chartjs-2(グラフ作成)
 - DateFNS（日付操作ライブラリ）
+- Redux,Reduxtoolkit（認証機能の状態管理に使用）
