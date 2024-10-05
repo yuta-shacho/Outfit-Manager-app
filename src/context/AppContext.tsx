@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { isFireStoreError } from "../utils/isFireStoreError";
 import { db } from "../firebase";
+import { useAppSelector } from "../app/hooks";
 
 interface AppContextType {
   transactions: Transaction[];
@@ -39,19 +40,21 @@ export const AppContextProvider = ({ children }: { children: ReactNode }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
+  const user = useAppSelector((state) => state.user);
+
+  //データを保存
   const onSaveTransaction = async (transaction: Schema) => {
-    console.log(transaction);
     try {
-      // Add a new document with a generated id.
-      const docRef = await addDoc(collection(db, "Transactions"), transaction);
+      const docRef = await addDoc(
+        collection(db, "users", user?.uid ?? "unknown_user", "Transactions"),
+        transaction
+      );
       console.log("Document written with ID: ", docRef.id);
 
       const newTransaction = {
         id: docRef.id,
         ...transaction,
       } as Transaction;
-
-      console.log(newTransaction);
 
       setTransactions((prevTransaction) => [
         ...prevTransaction,
@@ -68,6 +71,7 @@ export const AppContextProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  //データを削除
   const onDeleteTransaction = async (
     transactionIds: string | readonly string[]
   ) => {
@@ -75,10 +79,11 @@ export const AppContextProvider = ({ children }: { children: ReactNode }) => {
       const idsToDelete = Array.isArray(transactionIds)
         ? transactionIds
         : [transactionIds];
-      console.log(idsToDelete);
 
       for (const id of idsToDelete) {
-        await deleteDoc(doc(db, "Transactions", id));
+        await deleteDoc(
+          doc(db, "users", user?.uid ?? "unknown_user", "Transactions", id)
+        );
       }
       // const filteredTransaction = transactions.filter(
       //   (transaction) => transaction.id !== transactionIds
@@ -99,13 +104,19 @@ export const AppContextProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  //取引を変更
+  //データを変更
   const handleUpdateTransaction = async (
     transaction: Schema,
     transactionId: string
   ) => {
     try {
-      const docRef = doc(db, "Transactions", transactionId);
+      const docRef = doc(
+        db,
+        "users",
+        user?.uid ?? "unknown_user",
+        "Transactions",
+        transactionId
+      );
 
       // Set the "capital" field of the city 'DC'
       await updateDoc(docRef, transaction);
