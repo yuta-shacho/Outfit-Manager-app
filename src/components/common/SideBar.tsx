@@ -1,18 +1,22 @@
 import {
   Box,
+  Button,
   Divider,
   Drawer,
+  Grid2,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Toolbar,
+  Typography,
 } from "@mui/material";
 import CheckroomIcon from "@mui/icons-material/Checkroom";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
 import React, { CSSProperties } from "react";
 import { NavLink } from "react-router-dom";
+import { useAppSelector } from "../../app/hooks";
+import { auth } from "../../firebase";
 
 interface SideBarProps {
   drawerWidth: number;
@@ -48,9 +52,43 @@ function SideBar({
     backgroundColor: "rgba(0,0,0,0.08)",
   };
 
+  const user = useAppSelector((state) => state.user);
+
   const drawer = (
     <div>
-      <Toolbar />
+      <Grid2
+        container
+        spacing={2}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <Grid2 sx={{ paddingTop: "10px" }}>
+          <img
+            src={user?.photo}
+            alt=""
+            style={{ borderRadius: "50%", width: "70px" }}
+          />
+        </Grid2>
+        <Grid2 sx={{ paddingLeft: "4px", paddingRight: "2px" }}>
+          <Typography sx={{ wordBreak: "break-word" }}>
+            {user?.displayName}
+          </Typography>
+        </Grid2>
+        <Grid2 sx={{ paddingBottom: "20px" }}>
+          <Button
+            onClick={() => auth.signOut()}
+            color={"error"}
+            variant="contained"
+          >
+            サインアウト
+          </Button>
+        </Grid2>
+      </Grid2>
+
       <Divider />
       <List>
         {MenuItems.map((item, index) => (
