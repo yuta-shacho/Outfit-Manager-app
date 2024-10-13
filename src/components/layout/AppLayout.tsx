@@ -110,8 +110,8 @@ export default function AppLayout() {
             <MenuIcon />
           </IconButton>
           <img
-            src="../../public/rogo.webp"
-            alt=""
+            src="/rogo.webp"
+            alt="rogo"
             style={{ borderRadius: "50%", width: "50px" }}
           />
           <Typography

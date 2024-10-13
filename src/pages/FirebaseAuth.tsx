@@ -46,8 +46,8 @@ const FirebaseAuth = () => {
       >
         <Stack alignItems="center">
           <img
-            src="../../public/rogo.webp"
-            alt=""
+            src="/rogo.webp"
+            alt="rogo"
             style={{ borderRadius: "50%", width: "80px" }}
           />
 
